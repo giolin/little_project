@@ -158,6 +158,25 @@ public class CameraTestActivity extends Activity implements SurfaceHolder.Callba
 	public void surfaceCreated(SurfaceHolder holder) {
 		camera = Camera.open();
 		try {
+//			Camera.Parameters parameters = camera.getParameters();
+//			//in order to get square preview size
+//			List<Camera.Size> previewSizes = parameters.getSupportedPreviewSizes();
+//			Camera.Size previewSize = previewSizes.get(0);
+//			for(int i=0;i<previewSizes.size();i++) {
+//				if(previewSizes.get(i).width==previewSizes.get(i).height)
+//					previewSize = previewSizes.get(i);
+//			}
+//			Log.d("mmpud", "width:" + previewSize.width + ", height:" + previewSize.height);
+//			int previewEdgeLength;
+//			if (previewSize.width>=previewSize.height) {
+//				previewEdgeLength = previewSize.height;
+//			} else {
+//				previewEdgeLength = previewSize.width;
+//			}
+//			parameters.setPreviewSize(previewEdgeLength, previewEdgeLength);
+//			camera.setParameters(parameters);
+//			camera.setPreviewDisplay(surfaceHolder);
+//			camera.startPreview();
 			Camera.Parameters parameters = camera.getParameters();
 			//in order to get square preview size
 			List<Camera.Size> previewSizes = parameters.getSupportedPreviewSizes();
@@ -165,15 +184,8 @@ public class CameraTestActivity extends Activity implements SurfaceHolder.Callba
 			for(int i=0;i<previewSizes.size();i++) {
 				if(previewSizes.get(i).width==previewSizes.get(i).height)
 					previewSize = previewSizes.get(i);
-			}
-			Log.d("mmpud", "width:" + previewSize.width + ", height:" + previewSize.height);
-			int previewEdgeLength;
-			if (previewSize.width>=previewSize.height) {
-				previewEdgeLength = previewSize.height;
-			} else {
-				previewEdgeLength = previewSize.width;
-			}
-			parameters.setPreviewSize(previewEdgeLength, previewEdgeLength);
+			}		
+			parameters.setPreviewSize(previewSize.width, previewSize.height);
 			camera.setParameters(parameters);
 			camera.setPreviewDisplay(surfaceHolder);
 			camera.startPreview();
